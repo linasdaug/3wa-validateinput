@@ -15,17 +15,18 @@
                 Name: <input id="name" type="text" name="name" ><br><p id="pname" class="validationComment"></p><br>
                 Address: <input id="address" type="text" name="address"><br><p id="paddress" class="validationComment"></p><br>
                 Country <select id="country">
+                        <option value="">- Pasirinkite -</option>
                           <option value="Lietuva">Lietuva</option>
                           <option value="Latvija">Latvija</option>
                           <option value="Estija">Estija</option>
-                          <option value="Mozambikas">Mozambikas</option>
+                          <option value="Suomija">Mozambikas</option>
                       </select><br>
                 ZIP code: <input id="zipcode" type="text" name="zipcode"><br><p id="pzipcode" class="validationComment"></p><br>
                 email: <input id="email" type="text" name="email"><br><p id="pemail" class="validationComment"></p><br>
-                Sex: <input type="radio" name="gender"> Male
+                Gender: <input type="radio" name="gender"> Male
                     <input type="radio" name="gender"> Female<br><p id="pgender" class="validationComment"></p><br>
-                Language: <input type="checkbox" name="english"> English
-                        <input type="checkbox" name="other"> Other <br>
+                Language: <input id="checkboxenglish" type="checkbox" name="language" value="english"> English
+                        <input id="checkboxother" type="checkbox" name="language" value="other"> Other <br><p id="planguage" class="validationComment"></p><br>
 
                 About: <textarea id="about" name="about" rows="8" cols="50"></textarea><br><p id="pabout" class="validationComment"></p><br>
 

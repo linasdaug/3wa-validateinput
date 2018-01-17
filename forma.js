@@ -12,9 +12,7 @@ function validateForm() {
     let x = document.forms["forma"]["username"].value;
     let xfield = document.getElementById("username");
     let xcomment = document.getElementById("pusername");
-    xvalid = true;
-
-    console.log(xfield);
+    let xvalid = true;
 
     if (x == "") {
         xcomment.innerHTML = "user name not entered";
@@ -41,12 +39,12 @@ function validateForm() {
         document.getElementById("pusername").classList.remove("ok");
     }
 
-    // PASSWORD VALIDATION
+// PASSWORD VALIDATION
 
         let p = document.forms["forma"]["password"].value;
         let pfield = document.getElementById("password");
         let pcomment = document.getElementById("ppassword");
-        pvalid = true;
+        let pvalid = true;
 
 
     if (p == "") {
@@ -55,13 +53,13 @@ function validateForm() {
         pvalid = false;
     }
 
- // (!)(@)(#)($)(%)(^)(&)(*)(()())(_)(-)(+)(=)([)({)(\)(|)(:)(;)(')(")(})(])(<)(,)(>)(.)(?)(/)(`)(~)
+ // !@#$%^&*()_+{}[]:"|;'\<>?,./`~
 
     testas = /\(/.test(p) || /\)/.test(p) || /\!/.test(p) || /\@/.test(p) || /\#/.test(p) || /\$/.test(p) || /\%/.test(p) || /\^/.test(p) || /\&/.test(p);
     testas = testas || /\*/.test(p) || /\_/.test(p) || /\-/.test(p) || /\+/.test(p) || /\=/.test(p) || /\[/.test(p) || /\{/.test(p) || /\\/.test(p) || /\|/.test(p);
     testas = testas || /\:/.test(p) || /\;/.test(p) || /\'/.test(p) || /\"/.test(p) || /\}/.test(p) || /\]/.test(p) || /\</.test(p) || /\,/.test(p) || /\>/.test(p);
     testas = testas || /\./.test(p) || /\?/.test(p) || /\//.test(p) || /\`/.test(p) || /\~/.test(p);
-        console.log(testas);
+
 
     if (!testas) {
         pcomment.innerHTML = "password must have at leat 1 special character like !@#$%^ etc.";
@@ -87,33 +85,107 @@ function validateForm() {
     let n = document.forms["forma"]["name"].value;
     let nfield = document.getElementById("name");
     let ncomment = document.getElementById("pname");
-    nvalid = true;
-
-
+    let nvalid = true;
 
     if (n == "") {
         ncomment.innerHTML = "name not entered";
         nvalid = false;
-
-    if (!/^[a-zA-Z]+$/.test(n)) {
+    } else if (!/^[a-zA-Z]+$/.test(n)) {
         ncomment.innerHTML = "name must contain only letters";
         nvalid = false;
-    }
+    };
 
     if (nvalid) {
         ncomment.innerHTML = "Ok";
         document.getElementById("pname").classList.add("ok");
     } else {
         document.getElementById("pname").classList.remove("ok");
-    }
+    };
 
-    }
+//ZIPCODE VALIDATION
 
-    let s = document.forms["forma"]["gender"].value;
+    let z = document.forms["forma"]["zipcode"].value;
+    let zfield = document.getElementById("zipcode");
+    let zcomment = document.getElementById("pzipcode");
+    let zvalid = true;
 
-    if (s == "") {
+
+    if (z == "") {
+        zcomment.innerHTML = "name not entered";
+        zvalid = false;
+    } else if (!/^\d+$/.test(z)) {
+        zcomment.innerHTML = "ZIP must contain only numbers";
+        zvalid = false;
+    };
+
+    if (zvalid) {
+        zcomment.innerHTML = "Ok";
+        document.getElementById("pzipcode").classList.add("ok");
+    } else {
+        document.getElementById("pzipcode").classList.remove("ok");
+    };
+
+//GENDER VALIDATION
+
+    let g = document.forms["forma"]["gender"].value;
+    let gfield = document.getElementById("gender");
+    let gcomment = document.getElementById("pgender");
+    let gvalid = true;
+
+    if (g == "") {
         document.getElementById("pgender").innerHTML = "gender not entered";
-    }
+        gvalid = false;
+    };
+
+    if (zvalid) {
+        gcomment.innerHTML = "Ok";
+        document.getElementById("pgender").classList.add("ok");
+    } else {
+        document.getElementById("pgender").classList.remove("ok");
+    };
+
+
+//LANGUAGE VALIDATION
+
+    let l1 = document.forms["forma"]["checkboxenglish"].value;
+    let l2 = document.forms["forma"]["checkboxother"].value;
+    let lfield1 = document.getElementById("checkboxenglish");
+    let lfield2 = document.getElementById("checkboxother");
+
+    let lcomment = document.getElementById("planguage");
+    let lvalid = true;
+
+
+    if (l1 == "" && l2 == "") {
+        document.getElementById("planguage").innerHTML = "choose language";
+        lvalid = false;
+    };
+
+    if (lvalid) {
+        lcomment.innerHTML = "Ok";
+        document.getElementById("planguage").classList.add("ok");
+    } else {
+        document.getElementById("planguage").classList.remove("ok");
+    };
+
+//TEXTAREA 'ABOUT' VALIDATION
+
+let a = document.forms["forma"]["about"].value;
+let afield = document.getElementById("about");
+let acomment = document.getElementById("pabout");
+let avalid = true;
+
+if (a == "") {
+    document.getElementById("pabout").innerHTML = "please put in your comments";
+    avalid = false;
+};
+
+if (avalid) {
+    acomment.innerHTML = "Ok";
+    document.getElementById("pabout").classList.add("ok");
+} else {
+    document.getElementById("pabout").classList.remove("ok");
+};
 
 }
 
