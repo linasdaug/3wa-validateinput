@@ -4,43 +4,23 @@
         <meta charset="utf-8">
         <title>Forma</title>
         <link rel="stylesheet" href="forma.css">
+        <script src="forma.js" type="text/javascript"></script>
+
 
     </head>
     <body>
-
-        <form id="forma" action="" class="regform" name="forma">
+        <form id="forma" class="regform" name="forma" method="post">
             <h1>Registration Form</h1>
-                Username: <input id="username" type="text" name="username"><br><p id="pusername" class="validationComment"></p><br>
-                Password: <input id="password" type="text" name="passw" ><br><p id="ppassword" class="validationComment"></p><br>
-                Name: <input id="name" type="text" name="name" ><br><p id="pname" class="validationComment"></p><br>
-                Address: <input id="address" type="text" name="address"><br><p id="paddress" class="validationComment"></p><br>
-                Country <select id="country">
-                        <option value="">- Pasirinkite -</option>
-                          <option value="Lietuva">Lietuva</option>
-                          <option value="Latvija">Latvija</option>
-                          <option value="Estija">Estija</option>
-                          <option value="Suomija">Mozambikas</option>
-                      </select><br>
-                ZIP code: <input id="zipcode" type="text" name="zipcode"><br><p id="pzipcode" class="validationComment"></p><br>
-                email: <input id="email" type="text" name="email"><br><p id="pemail" class="validationComment"></p><br>
-                Gender: <input type="radio" name="gender"> Male
-                    <input type="radio" name="gender"> Female<br><p id="pgender" class="validationComment"></p><br>
-                Language: <input id="checkboxenglish" type="checkbox" name="language" value="english"> English
-                        <input id="checkboxother" type="checkbox" name="language" value="other"> Other <br><p id="planguage" class="validationComment"></p><br>
+                Username: <input id="username" type="text" name="username" method="post"><br>
 
-                About: <textarea id="about" name="about" rows="8" cols="50"></textarea><br><p id="pabout" class="validationComment"></p><br>
+        </form>
 
-                <!-- <input type="submit" onsubmit="validateForm()"> -->
-            </form>
+        <!-- <div id="button">
+            <p>BUTONAS</p>
 
-                <div id="btn">Enter</div>
-                <!-- <input id="btn" type="submit" onsubmit = "validateForm()"></button> -->
-                <!-- <button type="reset" name="resetbutton">Reset</button> -->
+        </div> -->
 
+        <input type="button" value="click me" onclick="validateForm()" />
 
-
-        <script src="forma.js">
-
-        </script>
     </body>
 </html>
