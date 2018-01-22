@@ -2,12 +2,21 @@
 
 function resetForm() {
     document.getElementById("forma").reset();
+    document.getElementById("pusername").innerHTML = "";
+    document.getElementById("ppassword").innerHTML = "";
+    document.getElementById("pname").innerHTML = "";
+    document.getElementById("pgender").innerHTML = "";
+    document.getElementById("pemail").innerHTML = "";
+    document.getElementById("pcountry").innerHTML = "";
+    document.getElementById("pzipcode").innerHTML = "";
+    document.getElementById("planguage").innerHTML = "";
+    document.getElementById("pabout").innerHTML = "";
 }
 
 
 
 function validateForm() {
-    console.log("Validate started");
+
 
 // USERNAME VALIDATION
 
@@ -29,7 +38,7 @@ function validateForm() {
         }
 
         if (u.length < 5 || u.length > 12) {
-            ucomment.innerHTML = "user name must contain 5 to 12 characters";
+            ucomment.innerHTML = ucomment.innerHTML + "user name must contain 5 to 12 characters";
             ufield.focus();
             uvalid = false;
         }
@@ -41,7 +50,6 @@ function validateForm() {
         document.getElementById("pusername").classList.remove("ok");
     }
 
-console.log(u);
 
 // PASSWORD VALIDATION
 
@@ -67,7 +75,7 @@ console.log(u);
     testas = /[!@#$%^&*()_+{}[:"|;'<>?,./`~]/.test(p) || /\]/.test(p) || /\\/.test(p);
 
     if (!testas) {
-        pcomment.innerHTML = "password must have at leat 1 special character like !@#$%^ etc.<br>";
+        pcomment.innerHTML = "password must have at least 1 special character like !@#$%^ etc.<br>";
         pfield.focus();
         pvalid = false;
     }
@@ -113,6 +121,8 @@ console.log(u);
 
 //EMAIL VALIDATION
 
+//   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Z]{2,}$/.
+
 let e = document.forms["forma"]["email"].value;
 let efield = document.getElementById("email");
 let ecomment = document.getElementById("pemail");
@@ -123,8 +133,8 @@ if (e == "") {
     ecomment.innerHTML = "e-mail not entered <br>";
     evalid = false;
     efield.focus();
-} else if (!/@/.test(e)) {
-    ecomment.innerHTML = "please enter valid e-mail (mus contain @)";
+} else if (!/\b^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$\b/.test(e)) {
+    ecomment.innerHTML = "please enter valid e-mail";
     evalid = false;
     efield.focus();
 };
@@ -146,7 +156,7 @@ if (evalid) {
     let gvalid = true;
 
     if (g == "") {
-        document.getElementById("pgender").innerHTML = "gender not entered";
+        document.getElementById("pgender").innerHTML = "gender not selected";
         gvalid = false;
     };
 
@@ -271,6 +281,31 @@ if (evalid) {
         document.getElementById("planguage").classList.add("ok");
     } else {
         document.getElementById("planguage").classList.remove("ok");
+    };
+
+
+//"ABOUT" VALIDATION
+
+    let a = document.forms["forma"]["about"].value;
+    let afield = document.getElementById("about");
+    let acomment = document.getElementById("pabout");
+    let avalid = true;
+
+    if (a == "") {
+        document.getElementById("pabout").innerHTML = "please enter your comments";
+        avalid = false;
+        afield.focus();
+    };
+
+    if (avalid) {
+        acomment.innerHTML = "Ok";
+        document.getElementById("pabout").classList.add("ok");
+    } else {
+        document.getElementById("pabout").classList.remove("ok");
+    };
+
+    if (uvalid && pvalid && cvalid && avalid && gvalid && zvalid && lvalid && evalid && nvalid) {
+        alert("Form submitted!");
     };
 
 }
