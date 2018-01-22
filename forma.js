@@ -1,5 +1,9 @@
 // document.getElementById("btn").addEventListener("click", validateForm());
 
+function resetForm() {
+    document.getElementById("forma").reset();
+}
+
 
 
 function validateForm() {
@@ -19,13 +23,13 @@ function validateForm() {
     } else {
 
         if (!/\d/.test(u)) {
-            ucomment.innerHTML = "user name must contain at least one number";
+            ucomment.innerHTML = "user name must contain at least one number <br>";
             ufield.focus();
             uvalid = false;
         }
 
-        if (u.length < 5) {
-            ucomment.innerHTML = "user name must contain at least 5 symbols";
+        if (u.length < 5 || u.length > 12) {
+            ucomment.innerHTML = "user name must contain 5 to 12 characters";
             ufield.focus();
             uvalid = false;
         }
@@ -44,6 +48,7 @@ console.log(u);
         let p = document.forms["forma"]["password"].value;
         let pfield = document.getElementById("password");
         let pcomment = document.getElementById("ppassword");
+        pcomment.innerHTML = "";
         let pvalid = true;
 
 
@@ -55,20 +60,20 @@ console.log(u);
 
  // !@#$%^&*()_+{}[]:"|;'\<>?,./`~
 
-    testas = /\(/.test(p) || /\)/.test(p) || /\!/.test(p) || /\@/.test(p) || /\#/.test(p) || /\$/.test(p) || /\%/.test(p) || /\^/.test(p) || /\&/.test(p);
-    testas = testas || /\*/.test(p) || /\_/.test(p) || /\-/.test(p) || /\+/.test(p) || /\=/.test(p) || /\[/.test(p) || /\{/.test(p) || /\\/.test(p) || /\|/.test(p);
-    testas = testas || /\:/.test(p) || /\;/.test(p) || /\'/.test(p) || /\"/.test(p) || /\}/.test(p) || /\]/.test(p) || /\</.test(p) || /\,/.test(p) || /\>/.test(p);
-    testas = testas || /\./.test(p) || /\?/.test(p) || /\//.test(p) || /\`/.test(p) || /\~/.test(p);
-
+    // testas = /\(/.test(p) || /\)/.test(p) || /\!/.test(p) || /\@/.test(p) || /\#/.test(p) || /\$/.test(p) || /\%/.test(p) || /\^/.test(p) || /\&/.test(p);
+    // testas = testas || /\*/.test(p) || /\_/.test(p) || /\-/.test(p) || /\+/.test(p) || /\=/.test(p) || /\[/.test(p) || /\{/.test(p) || /\\/.test(p) || /\|/.test(p);
+    // testas = testas || /\:/.test(p) || /\;/.test(p) || /\'/.test(p) || /\"/.test(p) || /\}/.test(p) || /\]/.test(p) || /\</.test(p) || /\,/.test(p) || /\>/.test(p);
+    // testas = testas || /\./.test(p) || /\?/.test(p) || /\//.test(p) || /\`/.test(p) || /\~/.test(p);
+    testas = /[!@#$%^&*()_+{}[:"|;'<>?,./`~]/.test(p) || /\]/.test(p) || /\\/.test(p);
 
     if (!testas) {
-        pcomment.innerHTML = "password must have at leat 1 special character like !@#$%^ etc.";
+        pcomment.innerHTML = "password must have at leat 1 special character like !@#$%^ etc.<br>";
         pfield.focus();
         pvalid = false;
     }
 
-    if (p.length < 5) {
-        pcomment.innerHTML = "password must contain at least 5 symbols";
+    if (p.length < 7 || p.length > 12) {
+        pcomment.innerHTML = pcomment.innerHTML + "password must contain 7 to 12 characters";
         pfield.focus();
         pvalid = false;
     }
@@ -104,30 +109,7 @@ console.log(u);
         document.getElementById("pname").classList.remove("ok");
     };
 
-//ZIPCODE VALIDATION
 
-    let z = document.forms["forma"]["zipcode"].value;
-    let zfield = document.getElementById("zipcode");
-    let zcomment = document.getElementById("pzipcode");
-    let zvalid = true;
-
-
-    if (z == "") {
-        zcomment.innerHTML = "ZIP code not entered";
-        zvalid = false;
-        zfield.focus();
-    } else if (!/^\d+$/.test(z)) {
-        zcomment.innerHTML = "ZIP must contain only numbers";
-        zvalid = false;
-        zfield.focus();
-    };
-
-    if (zvalid) {
-        zcomment.innerHTML = "Ok";
-        document.getElementById("pzipcode").classList.add("ok");
-    } else {
-        document.getElementById("pzipcode").classList.remove("ok");
-    };
 
 //EMAIL VALIDATION
 
@@ -138,7 +120,7 @@ let evalid = true;
 
 
 if (e == "") {
-    ecomment.innerHTML = "e-mail not entered";
+    ecomment.innerHTML = "e-mail not entered <br>";
     evalid = false;
     efield.focus();
 } else if (!/@/.test(e)) {
@@ -166,7 +148,6 @@ if (evalid) {
     if (g == "") {
         document.getElementById("pgender").innerHTML = "gender not entered";
         gvalid = false;
-        gfield.focus()
     };
 
     if (gvalid) {
@@ -197,6 +178,77 @@ if (evalid) {
         document.getElementById("pcountry").classList.remove("ok");
     };
 
+//COUNTRY PREFIX FOR ZIPCODE
+
+    let pref;
+
+    switch (c) {
+        case "lithuania":
+            pref = "LT -";
+            break;
+        case "latvia":
+            pref = "LV -";
+            break;
+        case "estonia":
+            pref = "EE -";
+            break;
+        case "finland":
+            pref = "FI -";
+            break;
+        default:
+            pref = ""
+    };
+
+    document.getElementById("prefix").innerHTML = pref;
+
+
+//ZIPCODE VALIDATION
+
+    let z = document.forms["forma"]["zipcode"].value;
+    let zfield = document.getElementById("zipcode");
+    let zcomment = document.getElementById("pzipcode");
+    let zvalid = cvalid;
+
+    if (cvalid == false) {
+        zfield.innerHTML = "";
+        zcomment.innerHTML = "Country not selected <br>";
+    }
+
+    if (z == "") {
+        zcomment.innerHTML = "ZIP code not entered <br>";
+        zvalid = false;
+        zfield.focus();
+    } else if (!/^\d+$/.test(z)) {
+        zcomment.innerHTML = "ZIP must contain only numbers <br>";
+        zvalid = false;
+        zfield.focus();
+    };
+
+    switch (c) {
+        case ("lithuania" || "estonia" || "finland"):
+            if (!/^\d{5}$/.test(z)) {
+                zcomment.innerHTML = "ZIP must contain 5 numbers <br>";
+                zvalid = false;
+                zfield.focus();
+            };
+            break;
+        case "latvia":
+            if (!/^\d{4}$/.test(z)) {
+                zcomment.innerHTML = "ZIP must contain 4 numbers <br>";
+                zvalid = false;
+                zfield.focus();
+            };
+            break;
+    };
+
+
+    if (zvalid) {
+        zcomment.innerHTML = "Ok";
+        document.getElementById("pzipcode").classList.add("ok");
+    } else {
+        document.getElementById("pzipcode").classList.remove("ok");
+    };
+
 
 //LANGUAGE VALIDATION
 
@@ -207,9 +259,6 @@ if (evalid) {
 
     let lcomment = document.getElementById("planguage");
     let lvalid = true;
-
-console.log(l1);
-console.log(l2);
 
     if (!l1 && !l2) {
         document.getElementById("planguage").innerHTML = "choose language";
