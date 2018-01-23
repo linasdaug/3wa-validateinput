@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="normalize.css">
+        <link rel="stylesheet" href="reset.css">
         <link rel="stylesheet" href="forma.css">
         <script src="forma.js"></script>
     </head>
@@ -15,6 +15,7 @@
 
         <form id="forma" action="" class="form-horizontal" name="forma">
             <h1>Registration Form</h1>
+            <h3 id="alert" class="alert">Form submitted!</h3>
 
                 Username: <input id="username" type="text" name="username"><br>
                 <p id="pusername" class="validationComment"></p>
@@ -44,7 +45,7 @@
                 <p id="pemail" class="validationComment"></p>
 
                 <div class="options">
-                Gender: <input type="radio" name="gender" value="male"> Male  <input type="radio" name="gender" value="female"> Female<br>
+                Gender: <input id="gender" type="radio" name="gender" value="male"> Male  <input type="radio" name="gender" value="female"> Female<br>
                     <p id="pgender" class="validationComment"></p>
 
                 Language: <input id="checkboxenglish" type="checkbox" name="language" value="english"> English
@@ -52,7 +53,7 @@
                         <p id="planguage" class="validationComment"></p>
                 </div>
 
-                About: <textarea id="about" name="about" rows="4" cols="50"></textarea><br>
+                About: <textarea id="about" name="about" rows="4" cols="40"></textarea><br>
                 <p id="pabout" class="validationComment"></p>
 
                 <div class="submit-reset">

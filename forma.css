@@ -19,7 +19,7 @@ h1 {
 input[type="text"], select {
     margin: 20px 100px 5px 20px;
     padding: 10px;
-    width: 200px;
+    width: 150px;
 }
 
 .options {
@@ -27,15 +27,29 @@ input[type="text"], select {
     padding: 20px;
 }
 
+.alert {
+    display: none;
+    color: #3A9040;
+    margin: 5px auto;
+}
+
+.alert-visible {
+    display: block;
+}
+
 .validationComment {
     color: red;
-    font-size: 10px;
+    font-size: 9px;
     text-align: right;
     margin-right: 100px;
 }
 
 .ok {
     color: green;
+}
+
+.notvalid {
+    background-color: mistyrose;
 }
 
 input[type="button"] {
@@ -50,4 +64,9 @@ textarea {
     display: flex;
     justify-content: space-around;
     margin: 20px 0;
+}
+
+.form-submitted {
+    background-color: #CBEBCD;
+    border: 3px solid #115510;
 }

@@ -1,22 +1,31 @@
-// document.getElementById("btn").addEventListener("click", validateForm());
 
 function resetForm() {
     document.getElementById("forma").reset();
     document.getElementById("pusername").innerHTML = "";
+    document.getElementById("pusername").classList.remove("ok");
     document.getElementById("ppassword").innerHTML = "";
+    document.getElementById("ppassword").classList.remove("ok");
     document.getElementById("pname").innerHTML = "";
-    document.getElementById("pgender").innerHTML = "";
+    document.getElementById("pname").classList.remove("ok");
     document.getElementById("pemail").innerHTML = "";
-    document.getElementById("pcountry").innerHTML = "";
-    document.getElementById("pzipcode").innerHTML = "";
+    document.getElementById("pemail").classList.remove("ok");
+    document.getElementById("pgender").innerHTML = "";
+    document.getElementById("pgender").classList.remove("ok");
     document.getElementById("planguage").innerHTML = "";
+    document.getElementById("planguage").classList.remove("ok");
+    document.getElementById("pzipcode").innerHTML = "";
+    document.getElementById("pzipcode").classList.remove("ok");
+    document.getElementById("prefix").innerHTML = "";
     document.getElementById("pabout").innerHTML = "";
-}
-
+    document.getElementById("pabout").classList.remove("ok");
+    document.getElementById("pcountry").innerHTML = "";
+    document.getElementById("pcountry").classList.remove("ok");
+    document.getElementById("alert").classList.remove("alert-visible");
+    document.getElementById("forma").classList.remove("form-submitted");
+};
 
 
 function validateForm() {
-
 
 // USERNAME VALIDATION
 
@@ -28,24 +37,23 @@ function validateForm() {
     if (u == "") {
         ucomment.innerHTML = "user name not entered";
         uvalid = false;
-        ufield.focus();
     } else {
 
         if (!/\d/.test(u)) {
             ucomment.innerHTML = "user name must contain at least one number <br>";
             ufield.focus();
             uvalid = false;
-        }
+        };
 
         if (u.length < 5 || u.length > 12) {
-            ucomment.innerHTML = ucomment.innerHTML + "user name must contain 5 to 12 characters";
-            ufield.focus();
+            ucomment.innerHTML = "user name must contain 5 to 12 characters";
             uvalid = false;
-        }
+        };
     }
     if (uvalid) {
         ucomment.innerHTML = "Ok";
         document.getElementById("pusername").classList.add("ok");
+        ufield.classList.remove("notvalid");
     } else {
         document.getElementById("pusername").classList.remove("ok");
     }
@@ -59,36 +67,31 @@ function validateForm() {
         pcomment.innerHTML = "";
         let pvalid = true;
 
-
     if (p == "") {
         pcomment.innerHTML = "password not entered";
-        pfield.focus();
+        // pfield.focus();
         pvalid = false;
     }
 
- // !@#$%^&*()_+{}[]:"|;'\<>?,./`~
+ // !@#$%^&*()_+{}[]:"|;'\<>?,./`~-
 
-    // testas = /\(/.test(p) || /\)/.test(p) || /\!/.test(p) || /\@/.test(p) || /\#/.test(p) || /\$/.test(p) || /\%/.test(p) || /\^/.test(p) || /\&/.test(p);
-    // testas = testas || /\*/.test(p) || /\_/.test(p) || /\-/.test(p) || /\+/.test(p) || /\=/.test(p) || /\[/.test(p) || /\{/.test(p) || /\\/.test(p) || /\|/.test(p);
-    // testas = testas || /\:/.test(p) || /\;/.test(p) || /\'/.test(p) || /\"/.test(p) || /\}/.test(p) || /\]/.test(p) || /\</.test(p) || /\,/.test(p) || /\>/.test(p);
-    // testas = testas || /\./.test(p) || /\?/.test(p) || /\//.test(p) || /\`/.test(p) || /\~/.test(p);
-    testas = /[!@#$%^&*()_+{}[:"|;'<>?,./`~]/.test(p) || /\]/.test(p) || /\\/.test(p);
+
+    let testas = /[!@#$%^&*()_+{}[:"|;'<>?,./`~]/.test(p) || /\]/.test(p) || /\\/.test(p) || /\-/.test(p);
 
     if (!testas) {
-        pcomment.innerHTML = "password must have at least 1 special character like !@#$%^ etc.<br>";
-        pfield.focus();
+        pcomment.innerHTML = "password must have at leat 1 special character like !@#$%^ etc.<br>";
         pvalid = false;
     }
 
     if (p.length < 7 || p.length > 12) {
         pcomment.innerHTML = pcomment.innerHTML + "password must contain 7 to 12 characters";
-        pfield.focus();
         pvalid = false;
     }
 
     if (pvalid) {
         pcomment.innerHTML = "Ok";
         document.getElementById("ppassword").classList.add("ok");
+        pfield.classList.remove("notvalid");
     } else {
         document.getElementById("ppassword").classList.remove("ok");
     }
@@ -103,16 +106,17 @@ function validateForm() {
     if (n == "") {
         ncomment.innerHTML = "name not entered";
         nvalid = false;
-        nfield.focus();
+        // nfield.focus();
     } else if (!/^[a-zA-Z]+$/.test(n)) {
         ncomment.innerHTML = "name must contain only letters";
         nvalid = false;
-        nfield.focus();
+        // nfield.focus();
     };
 
     if (nvalid) {
         ncomment.innerHTML = "Ok";
         document.getElementById("pname").classList.add("ok");
+        nfield.classList.remove("notvalid");
     } else {
         document.getElementById("pname").classList.remove("ok");
     };
@@ -121,7 +125,6 @@ function validateForm() {
 
 //EMAIL VALIDATION
 
-//   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Z]{2,}$/.
 
 let e = document.forms["forma"]["email"].value;
 let efield = document.getElementById("email");
@@ -132,31 +135,33 @@ let evalid = true;
 if (e == "") {
     ecomment.innerHTML = "e-mail not entered <br>";
     evalid = false;
-    efield.focus();
+    document.forms["forma"]["email"].classList.add("focused");
 } else if (!/\b^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$\b/.test(e)) {
     ecomment.innerHTML = "please enter valid e-mail";
     evalid = false;
-    efield.focus();
+    document.forms["forma"]["email"].classList.add("focused");
 };
 
 if (evalid) {
     ecomment.innerHTML = "Ok";
     document.getElementById("pemail").classList.add("ok");
+    efield.classList.remove("notvalid");
 } else {
     document.getElementById("pemail").classList.remove("ok");
 };
-
-
 
 //GENDER VALIDATION
 
     let g = document.forms["forma"]["gender"].value;
     let gfield = document.getElementById("gender");
+
+
+
     let gcomment = document.getElementById("pgender");
     let gvalid = true;
 
     if (g == "") {
-        document.getElementById("pgender").innerHTML = "gender not selected";
+        document.getElementById("pgender").innerHTML = "gender not entered";
         gvalid = false;
     };
 
@@ -178,12 +183,12 @@ if (evalid) {
     if (c == "") {
         document.getElementById("pcountry").innerHTML = "country not entered";
         cvalid = false;
-        cfield.focus();
     };
 
     if (cvalid) {
         ccomment.innerHTML = "Ok";
         document.getElementById("pcountry").classList.add("ok");
+        cfield.classList.remove("notvalid");
     } else {
         document.getElementById("pcountry").classList.remove("ok");
     };
@@ -227,11 +232,9 @@ if (evalid) {
     if (z == "") {
         zcomment.innerHTML = "ZIP code not entered <br>";
         zvalid = false;
-        zfield.focus();
     } else if (!/^\d+$/.test(z)) {
         zcomment.innerHTML = "ZIP must contain only numbers <br>";
         zvalid = false;
-        zfield.focus();
     };
 
     switch (c) {
@@ -239,14 +242,12 @@ if (evalid) {
             if (!/^\d{5}$/.test(z)) {
                 zcomment.innerHTML = "ZIP must contain 5 numbers <br>";
                 zvalid = false;
-                zfield.focus();
             };
             break;
         case "latvia":
             if (!/^\d{4}$/.test(z)) {
                 zcomment.innerHTML = "ZIP must contain 4 numbers <br>";
                 zvalid = false;
-                zfield.focus();
             };
             break;
     };
@@ -255,6 +256,7 @@ if (evalid) {
     if (zvalid) {
         zcomment.innerHTML = "Ok";
         document.getElementById("pzipcode").classList.add("ok");
+        zfield.classList.remove("notvalid");
     } else {
         document.getElementById("pzipcode").classList.remove("ok");
     };
@@ -273,7 +275,6 @@ if (evalid) {
     if (!l1 && !l2) {
         document.getElementById("planguage").innerHTML = "choose language";
         lvalid = false;
-        lfield1.focus();
     };
 
     if (lvalid) {
@@ -283,29 +284,59 @@ if (evalid) {
         document.getElementById("planguage").classList.remove("ok");
     };
 
-
 //"ABOUT" VALIDATION
 
-    let a = document.forms["forma"]["about"].value;
-    let afield = document.getElementById("about");
-    let acomment = document.getElementById("pabout");
-    let avalid = true;
+let a = document.forms["forma"]["about"].value;
+let afield = document.getElementById("about");
+let acomment = document.getElementById("pabout");
+let avalid = true;
 
-    if (a == "") {
-        document.getElementById("pabout").innerHTML = "please enter your comments";
-        avalid = false;
-        afield.focus();
-    };
+if (a == "") {
+    acomment.innerHTML = "please put some comments";
+    avalid = false;
+};
 
-    if (avalid) {
-        acomment.innerHTML = "Ok";
-        document.getElementById("pabout").classList.add("ok");
-    } else {
-        document.getElementById("pabout").classList.remove("ok");
-    };
+if (avalid) {
+    acomment.innerHTML = "Ok";
+    document.getElementById("pabout").classList.add("ok");
+    afield.classList.remove("notvalid");
+} else {
+    document.getElementById("pabout").classList.remove("ok");
+};
 
-    if (uvalid && pvalid && cvalid && avalid && gvalid && zvalid && lvalid && evalid && nvalid) {
-        alert("Form submitted!");
-    };
+
+//FOCUSING
+
+
+// if (!gvalid) {gfield.focus()};
+
+if (!avalid) {afield.focus(); afield.classList.add("notvalid")};
+if (!lvalid) {lfield1.focus()};
+if (!gvalid) {gfield.focus()};
+if (!evalid) {efield.focus(); efield.classList.add("notvalid")};
+if (!zvalid) {zfield.focus(); zfield.classList.add("notvalid")};
+if (!nvalid) {nfield.focus(); nfield.classList.add("notvalid")};
+if (!pvalid) {pfield.focus(); pfield.classList.add("notvalid");};
+if (!uvalid) {ufield.focus(); ufield.classList.add("notvalid")};
+
+if (!avalid || !lvalid || !gvalid || !evalid || !zvalid || !nvalid || !pvalid || !uvalid) {
+    document.getElementById("alert").classList.remove("alert-visible");
+    document.getElementById("forma").classList.remove("form-submitted");
+};
+
+
+if (avalid && lvalid && gvalid && evalid && zvalid && nvalid && uvalid) {
+    document.getElementById("forma").classList.add("form-submitted");
+    document.getElementById("alert").classList.add("alert-visible");
+    alert("FORM SUBMITTED!");
+}
+
+
+
+
+    //  if (!lvalid) {lfield1.focus()};
+
+
+
 
 }
