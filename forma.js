@@ -25,6 +25,18 @@ function resetForm() {
 };
 
 
+function changePasswordVisibility() {
+    //SHOW PASSWORD
+
+        let showpassword = document.forms["forma"]["password-visible"].checked;
+
+        if (showpassword) {
+            document.forms["forma"]["password"].setAttribute("type", "text");
+        } else {
+            document.forms["forma"]["password"].setAttribute("type", "password");
+        };
+}
+
 function validateForm() {
 
 // USERNAME VALIDATION
@@ -96,6 +108,7 @@ function validateForm() {
         document.getElementById("ppassword").classList.remove("ok");
     }
 
+
 // NAME VALIDATION
 
     let n = document.forms["forma"]["name"].value;
@@ -106,11 +119,11 @@ function validateForm() {
     if (n == "") {
         ncomment.innerHTML = "name not entered";
         nvalid = false;
-        // nfield.focus();
-    } else if (!/^[a-zA-Z]+$/.test(n)) {
+    };
+
+    if (!/[a-zA-Z ]/.test(n)) {
         ncomment.innerHTML = "name must contain only letters";
         nvalid = false;
-        // nfield.focus();
     };
 
     if (nvalid) {
@@ -119,6 +132,12 @@ function validateForm() {
         nfield.classList.remove("notvalid");
     } else {
         document.getElementById("pname").classList.remove("ok");
+    };
+
+    if (nvalid && !/^[A-Z]/.test(n)) {
+        n = n.charAt(0).toUpperCase() + n.slice(1);
+        document.forms["forma"]["name"].value = n;
+        ncomment.innerHTML = "First letter Capitalised";
     };
 
 
